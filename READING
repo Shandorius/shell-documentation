@@ -1,0 +1,133 @@
+#!/bin/bash
+# Every script should be started with the line above, this is called a shebang
+# it will make sure that when you use the script on a system with a non-default shell environment that it will still work
+# Besides that, it will enable you to execute the script as ./your/file.sh instead of bash file.sh
+#
+# This file will documentate all knowledge I gain along the way of building my own shell scripts
+# Questions can be send to shandor.v@hotmail.com
+
+# P1 - ADDING COMMENTS FOR YOURSELF/OTHER USERS OF THE SCRIPT WITHOUT AFFECTING THE CODE
+# this can be done simply by using the # as used for every comment in this file
+# everything on a line after the # will be left out of the code when executing the script
+
+# P2 - CREATING VARIABLES
+# Variables might be handy when you are going to use something long or complicated to write very frequently
+# or just to keep the code more structured and clean
+# My preference is to create a line with "# VARIABLE LIST" with the variables underneath, this helps me stay organized
+# Example below
+# VARIABLE LIST
+VAR1="Hello World"
+IMPUT=$1
+# Note that the name of the variable can be anything, although it can not contain spaces or weird icons like *&@#-= etc.
+# Calling a variable is done by putting a $ in front, for example:
+VAR1="hello world"
+echo $VAR1 #the echo command will be explained below
+
+# P3 - ECHO --> PRINTING OUTPUT TO THE TERMINAL
+echo "Hello World"  # This line prints the phrase "Hello world" to the terminal
+#
+#
+# Echo can be coded with colors as well in order to do this we use ANSI Escape codes, i provided them below:
+# Black        0;30     Dark Gray     1;30
+# Red          0;31     Light Red     1;31
+# Green        0;32     Light Green   1;32
+# Brown/Orange 0;33     Yellow        1;33
+# Blue         0;34     Light Blue    1;34
+# Purple       0;35     Light Purple  1;35
+# Cyan         0;36     Light Cyan    1;36
+# Light Gray   0;37     White         1;37
+# 
+# Example below
+RED='\033[0;31m'   # prints red --> in order to change replace the 0,31 with any number from the list, leave anyting else the same
+NC='\033[0m'	   # prints no color / regular
+
+echo -e "I ${RED}LOVE${NC} Linux" # prints love in red
+# as you can see the variable turns everything after it red, unless told otherwise, hence the ${NC} which turns it back
+# note that instead of echo we type "echo -e" you MUST do this, because the -e makes sure the \ is read properly otherwise it will be
+# read as a backspace
+
+# If you ever where to write some kind of information into a file this can be done by using the following
+echo "Whatever you want to be placed here" >> /your/file/here.txt #This creates a new line in the file with the echoed text in there
+
+# P4 - READ FUNCTION
+# the read functions reads keystrokes made by the user, for example:
+read ANSWER 
+# This records what the user typed and creates the variable ANSWER with the same value
+# there are several suffixes that can be used in companion with the read function
+-s --> silent mode, characters written are not outputted
+-r --> the \ does not act as an escae character but part of the line
+read -s ANSWER # Outputs the variable ANSWER as variable, but doesnt echo it for the user.
+
+# P5 - IF STATEMENTS
+# If statements are best explained by example, therefore I will use an example below and use the # to elaborate on each line
+if [ $ANSWER == yes ]                                   # "if" Starts the statement [these brackets are used in order to indicate what                                                         #  has to be checked] note the space, this has to be this way!! please check **
+then                                                    # Tells what to do if the statements is correct
+    Echo "You chose YES, are you sure about that?"      # your actions here
+else                                                    # Tells what should be done if the statement is incorrect
+    Echo "you chose NO exiting program" && exit 0       # your actions here / the exit 0 indicates that the script shoul be terminated
+fi                                                      # closes the argument
+
+# **Possible options for the if statement
+# Expressions 
+# An expression can be: String comparison, Numeric comparison, File operators and Logical operators and it is represented by
+# [ expression ]:
+# String Comparisons:  
+# ---------------------------------
+# =  compare if two strings are equal
+# !=  compare if two strings are not equal
+# -n  evaluate if string length is greater than zero
+# -z  evaluate if string length is equal to zero 
+
+# Examples: 
+# [ s1 = s2 ]  (true if s1 same as s2, else false)
+# [ s1 != s2 ]  (true if s1 not same as s2, else false)
+# [ s1 ]   (true if s1 is not empty, else false)
+# [ -n s1 ]   (true if s1 has a length greater then 0, else false)
+# [ -z s2 ]   (true if s2 has a length of 0, otherwise false)
+
+# Number Comparisons: 
+# ------------------------------------
+# -eq compare if two numbers are equal
+# -ge compare if one number is greater than or equal to a number
+# -le  compare if one number is less than or equal to a number
+# -ne  compare if two numbers are not equal
+# -gt  compare if one number is greater than another number
+# -lt  compare if one number is less than another number 
+
+# Examples: 
+# [ n1 -eq n2 ]  (true if n1 same as n2, else false)
+# [ n1 -ge n2 ]  (true if n1greater then or equal to n2, else false)
+# [ n1 -le n2 ]  (true if n1 less then or equal to n2, else false)
+# [ n1 -ne n2 ]  (true if n1 is not same as n2, else false)
+# [ n1 -gt n2 ]  (true if n1 greater then n2, else false)
+# [ n1 -lt n2 ]  (true if n1 less then n2, else false)
+
+# ------------------------------------------------------------------------------
+
+# Basic strings
+# ($whoami) --> Checks the name of the user
+# $USER --> Uses the name of the user
+# $UID --> This asks for the user id currently working the commandline for the superuser (root) this always equals 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
