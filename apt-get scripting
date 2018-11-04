@@ -1,0 +1,15 @@
+cd ~		
+sudo apt-get update -qq 	# -qq does --> no output, not even errors
+						            	# -yy install whatever happens even if errors occur
+sudo apt-get intall -yy gdebi   # gdebi is an app that might be usefull when youre installing multiple things from the command line.
+
+--------------------------------------------------------------------
+
+# Installing stuff from and to downloads folder
+cd /home/$USER/Downloads
+wget https://weblinkhere.com/
+
+sudo gdebi -n install-the-file	# Depending on the kind of file either of these can be used, prefer tar > gdebi, because gdebi requires install
+sudo tar xvfz instal-the-file	  # Tar is used for Tarball, tar, gzip, bzip
+
+rm -f the-install-file          # Removes the installer/zip from the folder to "clean up"
